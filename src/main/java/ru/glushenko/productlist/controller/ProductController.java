@@ -3,6 +3,7 @@ package ru.glushenko.productlist.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.glushenko.productlist.model.dto.ProductDto;
@@ -13,15 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Api(value = "ProductController" , tags = {"Product Controller"})
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
     private final ProductService productService;
-
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
 
     @ApiOperation(value = "List of all products", response = ArrayList.class, tags = "Product Controller")
     @GetMapping()

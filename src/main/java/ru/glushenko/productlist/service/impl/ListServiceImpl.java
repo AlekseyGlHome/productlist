@@ -1,5 +1,6 @@
 package ru.glushenko.productlist.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.glushenko.productlist.Exception.DuplicateElement;
 import ru.glushenko.productlist.Exception.ElementNotFound;
@@ -14,16 +15,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class ListServiceImpl implements ListService {
 
     private final ListRepository listRepository;
     private final ProductRepository productRepository;
-
-    public ListServiceImpl(ListRepository listRepository, ProductRepository productRepository) {
-        this.listRepository = listRepository;
-        this.productRepository = productRepository;
-    }
 
     @Override
     public ListDto findById(long id) {

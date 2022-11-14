@@ -1,10 +1,16 @@
 package ru.glushenko.productlist.model.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "list")
 public class ListEntity {
@@ -21,31 +27,6 @@ public class ListEntity {
             joinColumns = @JoinColumn(name = "list_id"),
             inverseJoinColumns = @JoinColumn(name = "products_id"))
     private List<ProductEntity> products = new ArrayList<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<ProductEntity> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<ProductEntity> products) {
-        this.products = products;
-    }
-
 
     @Override
     public boolean equals(Object o) {

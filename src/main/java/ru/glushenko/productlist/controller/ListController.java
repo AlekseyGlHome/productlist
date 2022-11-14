@@ -3,6 +3,7 @@ package ru.glushenko.productlist.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.glushenko.productlist.api.request.AddToListRequest;
@@ -13,16 +14,14 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Api(value = "ListController", tags = {"List Controller"})
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/lists")
 public class ListController {
 
     private final ListService listService;
-
-    public ListController(ListService listService) {
-        this.listService = listService;
-    }
 
     @ApiOperation(value = "All lists", response = ArrayList.class, tags = "List Controller")
     @GetMapping()
@@ -54,3 +53,4 @@ public class ListController {
                 addToListRequest.getProductId()));
     }
 }
+

@@ -1,5 +1,6 @@
 package ru.glushenko.productlist.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.glushenko.productlist.Exception.ElementNotFound;
 import ru.glushenko.productlist.model.dto.ProductDto;
@@ -11,14 +12,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     @Override
     public ProductDto findById(long id) {

@@ -3,6 +3,10 @@ package ru.glushenko.productlist.model.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.glushenko.productlist.model.entity.ListEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,6 +15,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = {"amountKcal","products"})
 public class ListDto {
 
     @ApiModelProperty(name = "id",required = true, value = "123", notes = "list unique code")
@@ -32,42 +40,10 @@ public class ListDto {
         this.name = name;
     }
 
-    public ListDto() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getAmountKcal() {
         setAmountKcal(products.stream().mapToInt(ProductDto::getKcal).sum());
         return amountKcal;
     }
-
-    public void setAmountKcal(int amountKcal) {
-        this.amountKcal = amountKcal;
-    }
-
-    public List<ProductDto> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<ProductDto> products) {
-        this.products = products;
-    }
-
 
     public static ListDto getListDto(ListEntity listEntity) {
         ListDto listDto = new ListDto();
@@ -82,16 +58,16 @@ public class ListDto {
         return listDto;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ListDto listDto = (ListDto) o;
-        return Objects.equals(id, listDto.id) && Objects.equals(name, listDto.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        ListDto listDto = (ListDto) o;
+//        return Objects.equals(id, listDto.id) && Objects.equals(name, listDto.name);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name);
+//    }
 }
